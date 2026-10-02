@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Marcel Sianturi — Portofolio</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#EDF0F3; --ink:#18212C; --muted:#5A6676; --line:#CBD2DB; --accent:#2B55E6; --accent-ink:#fff; --panel:#E1E6EC;
+  --radius:.5rem; --maxw:46rem;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#10151C;--ink:#E8ECF1;--muted:#93A0B0;--line:#2A3340;--accent:#7C9BFF;--accent-ink:#10151C;--panel:#18202A}
+}
+:root[data-theme="dark"]{--bg:#10151C;--ink:#E8ECF1;--muted:#93A0B0;--line:#2A3340;--accent:#7C9BFF;--accent-ink:#10151C;--panel:#18202A}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:1.0625rem;line-height:1.6}
+a{color:inherit}
+a:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:2px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 1.25rem}
+header.top{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 0;gap:1rem}
+header.top strong{font-weight:600}
+nav{display:flex;gap:1.25rem}
+nav a{text-decoration:none;color:var(--muted)}
+nav a:hover{color:var(--ink)}
+.hero{padding:4rem 0 3.5rem}
+.hero h1{font-size:clamp(2.4rem,9vw,4.6rem);line-height:1.02;font-weight:800;letter-spacing:-.03em;margin:0 0 1.5rem;max-width:14ch}
+.hero p{max-width:34rem;color:var(--muted);margin:0 0 2rem;font-size:1.15rem}
+.btn{display:inline-block;background:var(--accent);color:var(--accent-ink);padding:.8rem 1.4rem;border-radius:var(--radius);text-decoration:none;font-weight:600}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line);margin-left:.5rem}
+section{padding:3rem 0;border-top:1px solid var(--line)}
+h2{font-size:1.5rem;letter-spacing:-.01em;margin:0 0 1.5rem;font-weight:600}
+.work a.row{display:grid;grid-template-columns:1fr auto;gap:.25rem 1rem;padding:1.1rem 0;border-bottom:1px solid var(--line);text-decoration:none}
+.work a.row:first-of-type{padding-top:0}
+.work .t{font-weight:600;font-size:1.2rem}
+.work .y{color:var(--muted);text-align:right}
+.work .d{grid-column:1/-1;color:var(--muted);max-width:36rem}
+.work a.row:hover .t{color:var(--accent)}
+.work-item{border-bottom:1px solid var(--line)}
+.work-item:last-of-type{border-bottom:0}
+.work-item:first-of-type .row{padding-top:0}
+.work .row{display:grid;grid-template-columns:1fr auto;gap:.25rem 1rem;padding:1.1rem 0;border:0;background:none;width:100%;text-align:left;font:inherit;color:inherit;cursor:pointer}
+.work .row .t{font-weight:600;font-size:1.2rem}
+.work .row .y{color:var(--muted);text-align:right}
+.work .row .d{grid-column:1/-1;color:var(--muted);max-width:36rem}
+.work .row:hover .t{color:var(--accent)}
+.work .row::after{content:"+";grid-row:1;grid-column:2;justify-self:end;margin-left:.5rem;color:var(--muted);font-size:1.2rem;line-height:1;transition:transform .3s ease}
+.work .row[aria-expanded="true"]::after{transform:rotate(45deg)}
+.work-panel{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.work-panel-inner{padding-bottom:1.25rem}
+.work-img{height:12rem;border-radius:.6rem;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:1.1rem;letter-spacing:-.01em}
+.about p{max-width:36rem;margin:0 0 1rem}
+.skills{display:flex;flex-wrap:wrap;gap:.5rem;padding:0;margin:1.5rem 0 0;list-style:none}
+.skills li{background:var(--panel);padding:.3rem .8rem;border-radius:2rem;font-size:.95rem}
+.contact p{max-width:34rem;color:var(--muted);margin:0 0 1.25rem}
+.contact .mail{font-size:clamp(1.3rem,5vw,2rem);font-weight:800;letter-spacing:-.02em;text-decoration:none;border-bottom:3px solid var(--accent)}
+footer{padding:2rem 0 3rem;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
+@media (max-width:30rem){.btn.ghost{margin:.6rem 0 0}}
+
+.settings-toggle{position:fixed;top:calc(1rem + env(safe-area-inset-top,0px));right:1rem;z-index:20;width:2.75rem;height:2.75rem;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.settings-panel{position:fixed;top:calc(4.25rem + env(safe-area-inset-top,0px));right:1rem;z-index:20;background:var(--panel);border:1px solid var(--line);border-radius:.75rem;padding:1.1rem;width:15.5rem;max-width:calc(100vw - 2rem);box-shadow:0 10px 30px rgba(0,0,0,.18);display:none}
+.settings-panel.open{display:block}
+.settings-panel h3{margin:0 0 .9rem;font-size:.95rem;font-weight:600}
+.settings-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:.8rem;font-size:.9rem;color:var(--muted)}
+.settings-row:last-child{margin-bottom:0}
+.seg{display:flex;border:1px solid var(--line);border-radius:.4rem;overflow:hidden}
+.seg button{border:0;background:transparent;color:var(--ink);padding:.3rem .6rem;font-size:.85rem;cursor:pointer;font-family:inherit}
+.seg button.active{background:var(--accent);color:var(--accent-ink)}
+.swatches{display:flex;gap:.4rem}
+.swatches button{width:1.4rem;height:1.4rem;border-radius:50%;border:2px solid transparent;cursor:pointer;padding:0}
+.swatches button.active{border-color:var(--ink)}
+input[type="range"]{width:6.5rem}
+</style>
+</head>
+<body>
+<button class="settings-toggle" id="settingsToggle" aria-label="Pengaturan tampilan" aria-expanded="false">⚙️</button>
+<div class="settings-panel" id="settingsPanel">
+  <h3>Sesuaikan tampilan</h3>
+  <div class="settings-row">
+    <span>Tema</span>
+    <div class="seg" id="themeSeg">
+      <button data-theme="light">Terang</button>
+      <button data-theme="dark">Gelap</button>
+      <button data-theme="auto">Otomatis</button>
+    </div>
+  </div>
+  <div class="settings-row">
+    <span>Warna aksen</span>
+    <div class="swatches" id="accentSwatches">
+      <button style="background:#2B55E6" data-accent="#2B55E6" data-accent-dark="#7C9BFF" aria-label="Biru"></button>
+      <button style="background:#1F8A5F" data-accent="#1F8A5F" data-accent-dark="#4FD39B" aria-label="Hijau"></button>
+      <button style="background:#C2410C" data-accent="#C2410C" data-accent-dark="#FB923C" aria-label="Oranye"></button>
+      <button style="background:#A3135E" data-accent="#A3135E" data-accent-dark="#F472B6" aria-label="Merah muda"></button>
+    </div>
+  </div>
+  <div class="settings-row">
+    <span>Lebar halaman</span>
+    <input type="range" id="widthRange" min="38" max="60" value="46">
+  </div>
+</div>
+<div class="wrap">
+  <header class="top">
+    <strong id="Awal">Marcel Sianturi</strong>
+    <nav aria-label="Navigasi utama">
+      <a href="#tentang">Tentang</a>
+      <a href="#Hobi">Hobi</a>
+      <a href="#pendidikan">Pendidikan</a>
+      <a href="#kontak">Kontak</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero" >
+        <h2>Hai Semuanya!</h2>
+      <h1>Portofolio saya, Marcel Sianturi</h1>
+      <p>Halo, saya Marcel sianturi dan saya adalah seorang mahasiswa S-1 Ilmu komputer Universitas Negeri Medan. Saya sedang belajar menjadi lebih baik lagi dalam mengembangkan web.</p>
+      <a class="btn" href="#Hobi">Hobi & Kesukaan</a><a class="btn ghost" href="#kontak">Hubungi saya</a>
+    </div>
+
+    <section id="tentang" class="about">
+      <h2>Tentang saya</h2>
+      <p>Saya tertarik pada komputer sejak saya masih kecil. Kemudian saya mulai belajar tentang perangkat keras alat-alat komunikasi. Mulai dari situ, saya semakin tertarik untuk mempelajari tentang alat eletronik khususnya komputer sehingga saya melanjutkan pendidikan saya di prodi ilmu komputer Universitas Negeri Medan. Saya kemudian belajar membuat situs web sendiri. Web sederhana yang berisi tentang portofolio saya, dan ini adalah web pertama saya.</p>
+      <p>Saya suka proyek yang punya tujuan jelas, komunikasi yang terbuka, dan tenggat yang masuk akal.</p>
+      <ul class="skills" aria-label="Keahlian">
+        <li>HTML &amp; CSS</li><li>JavaScript</li><li>Capcut</li><li>canva</li><li>Branding</li>
+      </ul>
+    </section>
+
+    <section id="Hobi" class="work">
+      <h2>Hobi</h2>
+
+      <div class="work-item">
+        <button class="row" type="button" aria-expanded="false">
+          <span class="t">Bermain Game</span>
+          <span class="y">2026</span>
+          <span class="d">Mobile Legends.</span>
+        </button>
+        <div class="work-panel">
+          <div class="work-panel-inner">
+            <div class="work-img" style="background:linear-gradient(135deg)"><img src="data dkk/Mobile Legends.jpg" width="600" height="190" alt=""></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <button class="row" type="button" aria-expanded="false">
+          <span class="t">jalan-jalan</span>
+          <span class="y">2026</span>
+          <span class="d">Panguapan, paranginan</span>
+        </button>
+        <div class="work-panel">
+          <div class="work-panel-inner">
+            <div class="work-img" style="background:linear-gradient(135deg)"><img src="data dkk/Pemandangan Danau Toba.jpg" width="500" height="200" alt=""></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="work-item">
+        <button class="row" type="button" aria-expanded="false">
+          <span class="t">Mencoba sesuatu yang baru</span><span class="y">2026</span>
+          <span class="d">Mekalukan hal yang disukai</span>
+        </button>
+        <div class="work-panel">
+          <div class="work-panel-inner">
+            <div class="work-img" style="background:linear-gradient(135deg)"><img src="data dkk/Kodok 1.jpg" width="330" height="260" alt=""><img src="data dkk/Kodok 2.jpg" width="350" height="260" alt=""></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pendidikan" class="work">
+      <h2>Pendidikan</h2>
+      <a class="row">
+        <span class="t">S1 Ilmu Komputer</span><span class="y">Sedang Menenpuh</span>
+        <span class="d">Universitas Negeri Medan, Sumatera Utara. Fokus pada desain antarmuka dan branding.</span>
+      </a>
+      <a class="row">
+        <span class="t">SMA Negeri 1 Paranginan</span><span class="y">2023-2026</span>
+        <span class="d">Jurusan IPA, aktif di klub desain dan multimedia sekolah.</span>
+      </a>
+    </section>
+
+    <section id="kontak" class="contact">
+      <h2>Ayo bekerja sama</h2>
+      <p>Punya proyek atau sekadar ingin menyapa? Kirim email, biasanya saya balas. <cite>Kalau tidak lupa</cite>.</p>
+      <a class="mail" href="mailto:acupofknwldge170@gmail.com">acupofknwldge170@gmail.com</a>
+    </section>
+
+    <div class="wrap">
+    <a class="btn" href="#Awal">ke atas</a>
+    <div>
+
+  </main>
+
+  <footer>© 2026 Marcel Sianturi</footer>
+</div>
+
+<script>
+(function(){
+  var root = document.documentElement;
+  var toggle = document.getElementById('settingsToggle');
+  var panel = document.getElementById('settingsPanel');
+  var themeSeg = document.getElementById('themeSeg');
+  var swatches = document.getElementById('accentSwatches');
+  var widthRange = document.getElementById('widthRange');
+
+  function load(key, fallback){
+    try{
+      var v = localStorage.getItem(key);
+      return v === null ? fallback : v;
+    }catch(e){ return fallback; }
+  }
+  function save(key, val){
+    try{ localStorage.setItem(key, val); }catch(e){}
+  }
+
+  toggle.addEventListener('click', function(){
+    var open = panel.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  document.addEventListener('click', function(e){
+    if(!panel.contains(e.target) && e.target !== toggle && panel.classList.contains('open')){
+      panel.classList.remove('open');
+      toggle.setAttribute('aria-expanded','false');
+    }
+  });
+
+  function setTheme(mode){
+    if(mode === 'auto'){ root.removeAttribute('data-theme'); }
+    else{ root.setAttribute('data-theme', mode); }
+    Array.prototype.forEach.call(themeSeg.querySelectorAll('button'), function(b){
+      b.classList.toggle('active', b.dataset.theme === mode);
+    });
+    save('theme', mode);
+  }
+  themeSeg.addEventListener('click', function(e){
+    if(e.target.dataset.theme) setTheme(e.target.dataset.theme);
+  });
+
+  function setAccent(light, dark){
+    root.style.setProperty('--accent', light);
+    var styleId = 'accentDarkOverride';
+    var existing = document.getElementById(styleId);
+    if(existing) existing.remove();
+    var style = document.createElement('style');
+    style.id = styleId;
+    style.textContent = '@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--accent:'+dark+'}} :root[data-theme="dark"]{--accent:'+dark+'}';
+    document.head.appendChild(style);
+    Array.prototype.forEach.call(swatches.querySelectorAll('button'), function(b){
+      b.classList.toggle('active', b.dataset.accent === light);
+    });
+    save('accentLight', light);
+    save('accentDark', dark);
+  }
+  swatches.addEventListener('click', function(e){
+    var b = e.target.closest('button');
+    if(b) setAccent(b.dataset.accent, b.dataset.accentDark);
+  });
+
+  function setWidth(rem){
+    root.style.setProperty('--maxw', rem + 'rem');
+    widthRange.value = rem;
+    save('maxw', rem);
+  }
+  widthRange.addEventListener('input', function(){ setWidth(widthRange.value); });
+
+  // Muat preferensi tersimpan
+  setTheme(load('theme','auto'));
+  setAccent(load('accentLight','#2B55E6'), load('accentDark','#7C9BFF'));
+  setWidth(load('maxw','46'));
+
+  // Buka/tutup gambar karya
+  Array.prototype.forEach.call(document.querySelectorAll('.work-item'), function(item){
+    var btn = item.querySelector('.row');
+    var panel = item.querySelector('.work-panel');
+    btn.addEventListener('click', function(){
+      var isOpen = btn.getAttribute('aria-expanded') === 'true';
+      if(isOpen){
+        panel.style.maxHeight = '0px';
+        btn.setAttribute('aria-expanded', 'false');
+      }else{
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>
